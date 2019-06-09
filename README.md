@@ -1,3 +1,3 @@
 # small_game
 
-git test
+just for git test
