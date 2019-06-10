@@ -3,7 +3,7 @@ import random
 import pygame
 import sys
 
-size=16
+size=15
 
 class bomb_loc():
     def __init__(self,size):
