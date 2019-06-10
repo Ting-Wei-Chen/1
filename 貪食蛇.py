@@ -4,10 +4,6 @@ import sys
 import random
 import time
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b19453c9a8457ee6a563179de0e7b31d97310aa3
 A=np.zeros([50,50])
 for i in range(3,6):
     A[3,i]=i-2
@@ -141,7 +137,6 @@ bomb1.loc(A)
 pygame.init()
 win=pygame.display.set_mode([600,500])
 
-<<<<<<< HEAD
 font=pygame.font.SysFont('utf-8',30)
 
 def count():
@@ -153,9 +148,6 @@ def count():
         win.blit(w,(500,450))
         pygame.display.update()
         time.sleep(1)
-=======
-
->>>>>>> b19453c9a8457ee6a563179de0e7b31d97310aa3
 def draw():
     win.fill((255,255,255))
     pygame.draw.line(win,(0,0,0),(500,0),(500,500),4)
@@ -174,18 +166,15 @@ def draw():
     pygame.display.update()
 
 score=0
-<<<<<<< HEAD
 
 
 run=True
 timer1.start()
-
-=======
 font=pygame.font.SysFont('utf-8',30)
 
 run=True
 timer1.start()
->>>>>>> b19453c9a8457ee6a563179de0e7b31d97310aa3
+
 while run:
     
     press=False
