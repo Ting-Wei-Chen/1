@@ -286,19 +286,21 @@ win.blit(word1,(220,230))
 win.blit(word2,(220,270))
 win.blit(word3,(220,310))
 
-db_url='https://game-3fb9c.firebaseio.com/'
-fdb=firebase.FirebaseApplication(db_url,None)
-h=fdb.get('/highest',None)
+try:
+    db_url='https://game-3fb9c.firebaseio.com/'
+    fdb=firebase.FirebaseApplication(db_url,None)
+    h=fdb.get('/highest',None)
 
-for key in h:
-    highest=h[key]
+    for key in h:
+        highest=h[key]
 
-if score>highest:
-    fdb.delete('/highest',None)
-    fdb.post('/highest',score)
-    word4=font.render('new record',False,(255,0,0))
-    win.blit(word4,(225,350))
-
+    if score>highest:
+        fdb.delete('/highest',None)
+        fdb.post('/highest',score)
+        word4=font.render('new record',False,(255,0,0))
+        win.blit(word4,(225,350))
+except:
+    pass
 pygame.display.update()
 
 while True:
