@@ -87,7 +87,9 @@ def update():
 def main():
     score=0
     while True:
-        if random.randint(1,2)%2==0:
+        if random.randint(1,3)%2==0 and pygame.time.get_ticks()<60000:
+            bomb1.grt()
+        elif pygame.time.get_ticks()>=60000:
             bomb1.grt()
             draw_bomb()
             pygame.display.update()
@@ -120,7 +122,7 @@ def main():
         
         font=pygame.font.SysFont('utf-8',30)
         word1=font.render('score:{}'.format(score),False,(0,0,0))
-        win.blit(word1,(size*50-80,60))
+        win.blit(word1,(size*50-100,60))
         word2=font.render('time:{}'.format(pygame.time.get_ticks()//1000),False,(150,0,0))
         win.blit(word2,(size*50-80,100))
         pygame.display.update()
