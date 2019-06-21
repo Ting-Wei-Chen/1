@@ -119,11 +119,28 @@ def main():
         update()
         
         font=pygame.font.SysFont('utf-8',30)
-        word=font.render('score:{}'.format(score),False,(0,0,0))
-        win.blit(word,(size*50-80,60))
+        word1=font.render('score:{}'.format(score),False,(0,0,0))
+        win.blit(word1,(size*50-80,60))
+        word2=font.render('time:{}'.format(pygame.time.get_ticks()//1000),False,(150,0,0))
+        win.blit(word2,(size*50-80,100))
         pygame.display.update()
+
+        if pygame.time.get_ticks()>=120000:
+            break
+
         pygame.time.wait(135)
         continue
+    font=font=pygame.font.SysFont('utf-8',100)
+    win.fill((255,255,255))
+    word=font.render('score:{}'.format(score),False,(0,0,0))
+    win.blit(word,(size*19,size*19))
+    pygame.display.update()
+    while True:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+    
 if __name__=='__main__':
     main()
     
