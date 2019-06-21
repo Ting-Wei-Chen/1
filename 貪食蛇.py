@@ -3,8 +3,6 @@ import pygame
 import sys
 import random
 import time
-from firebase import firebase
-import os
 
 A=np.zeros([50,50])
 for i in range(3,6):
@@ -285,20 +283,6 @@ win.blit(word1,(220,230))
 win.blit(word2,(220,270))
 win.blit(word3,(220,310))
 
-if not os.system('ping www.google.com'):
-    db_url='https://game-3fb9c.firebaseio.com/'
-    fdb=firebase.FirebaseApplication(db_url,None)
-    h=fdb.get('/highest',None)
-
-    for key in h:
-        highest=h[key]
-    if score>highest:
-        fdb.delete('/highest',None)
-        fdb.post('/highest',score)
-        word4=font.render('new record',False,(255,0,0))
-        win.blit(word4,(225,350))
-else:
-    pass
 pygame.display.update()
 
 while True:
