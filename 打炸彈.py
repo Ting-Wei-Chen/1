@@ -87,13 +87,16 @@ def update():
 def main():
     score=0
     while True:
-        if random.randint(1,3)%2==0 and pygame.time.get_ticks()<60000:
+        if random.randint(1,3)%2==0 and pygame.time.get_ticks()<40000:
+            bomb1.grt()
+        elif random.randint(1,2)%2==0 and pygame.time.get_ticks()>=40000 and pygame.time.get_ticks()<60000:
             bomb1.grt()
         elif pygame.time.get_ticks()>=60000:
             bomb1.grt()
             draw_bomb()
             pygame.display.update()
         if killed_test():
+            key_word=font.render('eat bomb',False,(255,0,0))
             break
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -128,6 +131,7 @@ def main():
         pygame.display.update()
 
         if pygame.time.get_ticks()>=120000:
+            key_word=font.render('time up',False,(255,0,0))
             break
 
         pygame.time.wait(135)
@@ -136,6 +140,7 @@ def main():
     win.fill((255,255,255))
     word=font.render('score:{}'.format(score),False,(0,0,0))
     win.blit(word,(size*19,size*19))
+    win.blit(key_word,(size*24,size*29))
     pygame.display.update()
     while True:
         for event in pygame.event.get():
