@@ -134,7 +134,7 @@ def main():
             key_word=font.render('time up',False,(255,0,0))
             break
 
-        pygame.time.wait(135)
+        pygame.time.wait(100)
         continue
     font=font=pygame.font.SysFont('utf-8',100)
     win.fill((255,255,255))
