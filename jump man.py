@@ -5,6 +5,8 @@ pygame.init()
 win=pygame.display.set_mode((800,200))
 pygame.display.set_caption('jumping man')
 
+global passed_time
+
 
 def intro():
     
@@ -38,9 +40,9 @@ def intro():
     
         keys=pygame.key.get_pressed()
         if keys[pygame.K_SPACE]:
+            passed_time=pygame.time.get_ticks()
             run=True
             break
-    
     
     while run:
     
@@ -74,8 +76,10 @@ def intro():
             
         win.fill((230,230,230))
         surface=font.render('score:{}'.format(score),False,(0,0,0))
+        time=font.render('time:{}'.format((pygame.time.get_ticks()-passed_time)//1000),False,(0,0,0))
         win.blit(surface,(30,30))
         win.blit(sur,(600,30))
+        win.blit(time,(30,60))
         pygame.draw.rect(win,(0,0,0),(x,y,height,width))
         pygame.draw.rect(win,(255,0,0),(enemy_x,enemy_y,height,width))
     
