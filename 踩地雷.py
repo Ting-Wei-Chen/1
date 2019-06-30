@@ -79,8 +79,17 @@ class map_loc():
                 self.num_etr(x-1,y+1,size)
             if x<size-1 and y<size-1 and self.map[x+1,y+1]==-1:
                 self.num_etr(x+1,y+1,size)
-
+class flag():
+    def __init__(self):
+        self.map=np.zeros((size,size))
+    def set_flag(self,x,y):
+        if self.map[x,y]==1:
+            self.map[x,y]=0
+        else:
+            self.map[x,y]=1
+    
 map=map_loc(size)
+flag1=flag()
 
 pygame.init()
 win=pygame.display.set_mode([size*50,size*50])
@@ -89,14 +98,19 @@ pygame.display.update()
 
 font=pygame.font.SysFont('utf-8',35)
 def draw():
+    
     for i in range(size):
         for j in range(size):
             pygame.draw.rect(win,(100,100,100),(i*50+3,j*50+3,44,44))
-    
+            
+
     pygame.display.update()
 def set_num():
+    flag_img=pygame.image.load("flag.jpg")
+    flag_img=pygame.transform.scale(flag_img,(40,40))
     for i in range(size):
         for j in range(size):
+            
             if map.map[i,j]==0:
                 word=font.render(chr(int(map.map[i,j])+48),False,(0,0,0))
                 win.blit(word,(i*50+25,j*50+25))
@@ -112,6 +126,8 @@ def set_num():
             elif map.map[i,j]>3:
                 word=font.render(chr(int(map.map[i,j])+48),False,(255,0,255))
                 win.blit(word,(i*50+25,j*50+25))
+            elif flag1.map[i,j]==1:
+                win.blit(flag_img,(i*50+5,j*50+5))
     pygame.display.update()
 
 def check():
@@ -132,7 +148,7 @@ def end_check():
     return False
 def game():
     draw()
-
+    
     run=True
     while run:
         press=False
@@ -142,14 +158,17 @@ def game():
                 sys.exit()
             elif event.type==pygame.MOUSEBUTTONDOWN:
                 pos=pygame.mouse.get_pos()
-                
-                if map.jud(pos[0]//50,pos[1]//50):
-                    run=False
-                    break
-                else:
-                    map.num_etr(pos[0]//50,pos[1]//50,size)
+                if event.button==1:
+                    if map.jud(pos[0]//50,pos[1]//50):
+                        run=False
+                        break
+                    else:
+                        map.num_etr(pos[0]//50,pos[1]//50,size)
+                        press=True
+                elif event.button==3:
+                    flag1.set_flag(pos[0]//50,pos[1]//50)
                     press=True
-                    
+             
         if press:
             draw()
             set_num()
