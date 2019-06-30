@@ -105,7 +105,7 @@ def draw():
             
 
     pygame.display.update()
-def set_num():
+def set_num(mode):
     flag_img=pygame.image.load("flag.jpg")
     flag_img=pygame.transform.scale(flag_img,(40,40))
     for i in range(size):
@@ -126,7 +126,7 @@ def set_num():
             elif map.map[i,j]>3:
                 word=font.render(chr(int(map.map[i,j])+48),False,(255,0,255))
                 win.blit(word,(i*50+25,j*50+25))
-            elif flag1.map[i,j]==1:
+            elif flag1.map[i,j]==1 and mode:
                 win.blit(flag_img,(i*50+5,j*50+5))
     pygame.display.update()
 
@@ -171,7 +171,7 @@ def game():
              
         if press:
             draw()
-            set_num()
+            set_num(True)
         if end_check():
             continue
         else:
@@ -179,7 +179,7 @@ def game():
 def end():
     win.fill((255,255,255))
     draw()
-    set_num()
+    set_num(False)
     for i in range(size):
         for j in range(size):
             if bomb.map[i,j]==1:
