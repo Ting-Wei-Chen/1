@@ -9,16 +9,6 @@ for i in range(3,6):
     A[3,i]=i-2
 
 
-class timer():
-    def __init__(self):
-        self.start_time=0
-        self.end_time=0
-    def start(self):
-        self.start_time=time.time()
-    def end(self):
-        self.end_time=time.time()
-    def get(self):
-        return int(self.end_time-self.start_time)
 
 class bug():
     def __init__(self):
@@ -104,7 +94,6 @@ class bug():
                     A[i,j]+=1
 
 bug1=bug()
-timer1=timer()
 
 def generator(A):
     while True:
@@ -168,12 +157,10 @@ def draw():
 score=0
 
 
-run=True
-timer1.start()
 font=pygame.font.SysFont('utf-8',30)
 
 run=True
-timer1.start()
+
 
 while run:
     
@@ -267,17 +254,20 @@ while run:
 
     draw()
     word=font.render('score:{}'.format(score),False,(0,0,0))
+    time=font.render('time:{}'.format(pygame.time.get_ticks()//1000),False,(0,0,0))
+
     win.blit(word,(520,50))
+    win.blit(time,(520,80))
     pygame.display.update()
 
     pygame.time.wait(135)
     continue
 
-timer1.end()
 
+end_time=pygame.time.get_ticks()//1000
 win.fill((255,255,255))
 word1=font.render('score:{}'.format(score),False,(0,0,0))
-word2=font.render('elapsed time:{} second'.format(timer1.get()),False,(0,0,0))
+word2=font.render('elapsed time:{} second'.format(end_time),False,(0,0,0))
 word3=font.render(word,False,(0,0,0))
 win.blit(word1,(220,230))
 win.blit(word2,(220,270))
