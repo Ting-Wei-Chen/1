@@ -5,7 +5,7 @@ pygame.init()
 win=pygame.display.set_mode((800,200))
 pygame.display.set_caption('jumping man')
 
-global passed_time
+
 
 
 def intro():
